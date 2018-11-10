@@ -1,5 +1,25 @@
 task freshCopy(type: Copy) {
+	finalizedBy "removeNoise"
+
 	from freshCopySourceLocation
 	into freshCopyTargetLocation
 }
 
+task removeNoise(type: Copy) {
+	from removeNoiseSourceLocation
+	into removeNoiseTargetLocation
+}
+
+task applyThreshold(type: Copy) {
+	mustRunAfter "removeNoise"
+
+	from applyThresholdSourceLocation
+	into applyThresholdTargetLocation
+}
+
+task recognizeObject(type: Copy) {
+	dependsOn "applyThreshold"
+
+	from recognizeObjectSourceLocation
+	into recognizeObjectTargetLocation
+}
