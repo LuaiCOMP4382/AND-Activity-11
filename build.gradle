@@ -1,0 +1,5 @@
+task freshCopy(type: Copy) {
+	from freshCopySourceLocation
+	into freshCopyTargetLocation
+}
+
